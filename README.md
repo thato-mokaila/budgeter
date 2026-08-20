@@ -30,7 +30,7 @@ budgeter statement tx load --statement-id 1 --date 2026-08-20 --bucket cost --ca
 budgeter statement list --limit 25
 budgeter statement delete --id 1 --yes
 budgeter statement search --account cheque --from 2026-08-01 --top-10
-budgeter statement tx --statement-id 1 --current-month
+budgeter statement tx --statement-id 1 --bucket cost --category Groceries --all
 ```
 
 Statement loads use the latest saved statement as defaults. If you load a new statement and omit `account`, `income`, `costs`, `earnings`, or `savings`, those values are copied from the latest statement in the database. A load is rejected when a statement already exists for that statement's month.
@@ -70,6 +70,12 @@ budgeter statement tx load --statement-id 1 --file txs.csv
 Transaction buckets are `income`, `cost`, and `savings`. Bucketed transactions are used to calculate statement `income`, `costs`, `earnings`, `savings`, and `balance` when a statement is shown or listed. `earnings` is `income - costs`; `balance` is `income - costs - savings`. Existing unbucketed transactions are still displayed, but they are not included in calculated statement rows.
 
 Transaction categories are `Bills`, `Utilities`, `Groceries`, `Eating Out`, `Subscriptions`, `Transport`, `Shopping`, `Entertainment`, `Debt Repayments`, `Investments`, `Insurance`, `Healthcare`, `Personal Care`, and `Miscellaneous`.
+
+Transaction lists can be filtered by bucket and category:
+
+```sh
+budgeter statement tx --statement-id 1 --bucket cost --category Groceries --all
+```
 
 Transaction read flags are mutually exclusive:
 
