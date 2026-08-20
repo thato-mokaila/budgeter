@@ -500,6 +500,8 @@ func (c *CLI) runTransactionList(ctx context.Context, store *storage.Store, args
 	fs := c.flagSet("statement tx")
 	statementID := fs.Int64("statement-id", positionalID, "statement id")
 	idAlias := fs.Int64("id", 0, "statement id")
+	bucket := fs.String("bucket", "", "filter by transaction bucket: income, cost, or savings")
+	category := fs.String("category", "", "filter by transaction category")
 	txFlags := addTransactionModeFlags(fs)
 	if err := fs.Parse(remainingArgs); err != nil {
 		return err
@@ -522,6 +524,10 @@ func (c *CLI) runTransactionList(ctx context.Context, store *storage.Store, args
 	if err != nil {
 		return err
 	}
+	filter := storage.TransactionFilter{
+		Bucket:   *bucket,
+		Category: *category,
+	}
 
 	statement, ok, err := store.StatementByID(ctx, *statementID)
 	if err != nil {
@@ -530,7 +536,7 @@ func (c *CLI) runTransactionList(ctx context.Context, store *storage.Store, args
 	if !ok {
 		return fmt.Errorf("statement #%d was not found", *statementID)
 	}
-	transactions, err := store.Transactions(ctx, *statementID, mode)
+	transactions, err := store.TransactionsFiltered(ctx, *statementID, mode, filter)
 	if err != nil {
 		return err
 	}
@@ -750,7 +756,7 @@ Examples:
   budgeter statement list --limit 25
   budgeter statement delete --id 1 --yes
   budgeter statement search --account cheque --from 2026-08-01 --top-10
-  budgeter statement tx --statement-id 1 --current-month
+  budgeter statement tx --statement-id 1 --bucket cost --category Groceries --all
 `) + "\n"
 }
 
@@ -764,7 +770,7 @@ Statement commands:
   delete            Delete one statement and its transactions with --id and --yes.
   search            Search statements with --id, --account, --from, --to, --min-balance, --max-balance, --limit.
   show              Show a statement by --id.
-  tx                Show transaction rows for a statement.
+  tx                Show transaction rows for a statement. Supports --bucket and --category filters.
   tx load           Load transactions for a statement.
 
 Statement load rejects a new statement when one already exists for the statement month.
@@ -774,6 +780,10 @@ Transaction read flags:
   --top-10
   --top-100
   --current-month
+
+Transaction list filters:
+  --bucket income|cost|savings
+  --category category-name
 
 CSV statements headers:
   date, account, balance, income, costs, earnings, savings, notes
