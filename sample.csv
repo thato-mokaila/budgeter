@@ -1,0 +1,17 @@
+date,bucket,category,desc,amount
+2026-08-21,income,Miscellaneous,Monthly salary,50000.0
+2026-08-22,cost,Groceries,Woolworths,-842.10
+2026-08-23,cost,Transport,Fuel,-650.0
+2026-08-23,costs,Utilities,Electricity,-300.00
+2026-08-24,savings,Investments,Allan Gray,-3500.0
+2026-08-25,costs,Bills,e-Tshwane,-280.00
+2026-08-24,costs,Debt Repayments,CC,-2790.00
+2026-08-24,costs,Eating Out,Nandos,-220.00
+2026-08-24,costs,Eating Out,Nandos,-89.00
+2026-08-27,costs,Bill,School Fee,-2850.00
+2026-08-27,costs,Bill,Child Maintenance,-1000.00
+2026-08-27,costs,Bill,School Transport,-1000.00
+2026-08-27,costs,Utilities,Rain Mobile,-1050.00
+2026-08-27,costs,Insurance,King Price,-1049.00
+2026-09-01,costs,Utilities,Storage,-1600.00
+2026-09-02,savings,Investments,Education Plan,-1600.0
