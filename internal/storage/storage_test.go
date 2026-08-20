@@ -65,6 +65,20 @@ func TestStoreStatementSearchAndTransactions(t *testing.T) {
 		t.Fatalf("Transactions()[0].Category = %q, want Groceries", transactions[0].Category)
 	}
 
+	filteredTransactions, err := store.TransactionsFiltered(ctx, statement.ID, TransactionAll, TransactionFilter{
+		Bucket:   "cost",
+		Category: "groceries",
+	})
+	if err != nil {
+		t.Fatalf("TransactionsFiltered() error = %v", err)
+	}
+	if len(filteredTransactions) != 1 {
+		t.Fatalf("TransactionsFiltered() returned %d rows, want 1", len(filteredTransactions))
+	}
+	if filteredTransactions[0].Description != "Market" {
+		t.Fatalf("TransactionsFiltered()[0].Description = %q, want Market", filteredTransactions[0].Description)
+	}
+
 	calculated, err := store.StatementWithCalculatedRows(ctx, statement)
 	if err != nil {
 		t.Fatalf("StatementWithCalculatedRows() error = %v", err)
