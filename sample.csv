@@ -8,9 +8,9 @@ date,bucket,category,desc,amount
 2026-08-24,costs,Debt Repayments,CC,-2790.00
 2026-08-24,costs,Eating Out,Nandos,-220.00
 2026-08-24,costs,Eating Out,Nandos,-89.00
-2026-08-27,costs,Bill,School Fee,-2850.00
-2026-08-27,costs,Bill,Child Maintenance,-1000.00
-2026-08-27,costs,Bill,School Transport,-1000.00
+2026-08-27,costs,Bills,School Fee,-2850.00
+2026-08-27,costs,Bills,Child Maintenance,-1000.00
+2026-08-27,costs,Bills,School Transport,-1000.00
 2026-08-27,costs,Utilities,Rain Mobile,-1050.00
 2026-08-27,costs,Insurance,King Price,-1049.00
 2026-09-01,costs,Utilities,Storage,-1600.00
