@@ -1,4 +1,4 @@
-# budgeter
+# xpense tracker 
 
 `budgeter` is a Go CLI for loading statements, loading transactions for a statement, and searching statements with a Bubble Tea terminal view.
 
