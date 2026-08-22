@@ -5,7 +5,7 @@
 ## Build
 
 ```sh
-go build ./cmd/budgeter
+go build ./cmd/xt
 ```
 
 ## Commands
