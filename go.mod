@@ -1,4 +1,4 @@
-module budgeter
+module xt
 
 go 1.24.4
 
